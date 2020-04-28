@@ -3,15 +3,17 @@ import Fade from 'react-reveal/Fade';
 
 const Footer = () => {
     return (
-        <footer className="bck_black" style={{ marginTop:'100px' }}>
+        <footer className="bck_black" style={{ marginTop: '100px' }}>
             <Fade delay={500}>
-                <div className="font_righteous footer_logo_venue">React Quiz</div>
-                <div className="footer_copyright">
-                    Made with  
-                <span style={{color : 'crimson'}}>♥</span> By 
-                <a href="http://www.github.com/Jatin-8898" target="_blank"           rel="noopener noreferrer"> Jatin Varlyani 
-                </a>
-                
+                <div className="play-store">
+                <a target="_blank"  href=""> <img width="100" height="100" src="../../../public/assets/get-it-on-google-play-vector.png"/></a>
+                <a target="_blank"   href=""> <img width="100" height="100" src="../../../public/assets/download-on-the-app-store-badge.png"></img> </a>
+
+                </div>
+               <div className="footer_copyright">
+                    <p>Copyright © 2020
+                <a target="_blank" href=""> E-Preparation</a>. All Rights Reserved</p>
+
                 </div>
             </Fade>
         </footer>

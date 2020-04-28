@@ -5,45 +5,35 @@ class Answers extends Component {
         super(props);
         this.state = {
             isAnswered: false,
-            classNames: ['', '', '', '']
+            classNames: ['', '', '', '',''],
+            
         }
-        
+
         this.checkAnswer = this.checkAnswer.bind(this);
         this.clearClasses = this.clearClasses.bind(this);
     }
     
     checkAnswer(e) {
-        let { isAnswered } = this.props;
-        
-        if(!isAnswered) {
+        let { isAnswered, questionNo,active ,changeactive} = this.props;
+            this.clearClasses();
             let elem = e.currentTarget;
-            let { correct, increaseScore } = this.props;
-            let answer = Number(elem.dataset.id);
-            let updatedClassNames = this.state.classNames;
-
-            if(answer === correct){
-                updatedClassNames[answer-1] = 'right';
-                increaseScore();
-            }
-            else {
-                updatedClassNames[answer-1] = 'wrong';
-            }
             
-            this.setState({
-                classNames: updatedClassNames,
-                
-            })
+            let { correct, increaseScore ,myAnswer } = this.props;
+            
+           
+            changeactive(elem.dataset.id);
+            
+
+            myAnswer(questionNo,elem.dataset.id)
+            
 
             this.props.showButton();       
-            var myTime = setTimeout(() => {
-                this.clearClasses();
-                //console.log("IN SET Timeout")
-            }, 5000);
-        }
+           
+        
     }
     clearClasses(){
         this.setState({
-            classNames: ['', '', '', '']
+            classNames: ['', '', '', '','']
         })
         
     }
@@ -59,26 +49,33 @@ class Answers extends Component {
         
         return (
             <div id="answers">
+               
                 <ul>
+                    
                     <li onClick={this.checkAnswer} 
-                        className={classNames[0]} data-id="1">
+                        className={(parseInt(this.props.active) === 1 || parseInt(this.props.questiondata.my_answer) === 1 ) ? 'right': ''}  data-id="1">
                     <span>A</span> 
                     <p>{answers[0]}</p></li>
 
                     <li onClick={this.checkAnswer} 
-                        className={classNames[1]} data-id="2">
+                        className={ (parseInt(this.props.active) === 2 || parseInt(this.props.questiondata.my_answer) ===2 ) ? 'right': ''} data-id="2">
                     <span>B</span> 
                     <p>{answers[1]}</p></li>
 
                     <li onClick={this.checkAnswer} 
-                        className={classNames[2]} data-id="3">
+                       className={(parseInt(this.props.active) === 3  || parseInt(this.props.questiondata.my_answer) ===3) ? 'right': ''} data-id="3">
                     <span>C</span> 
                     <p>{answers[2]}</p></li>
 
                     <li onClick={this.checkAnswer} 
-                        className={classNames[3]} data-id="4">
+                        className={(parseInt(this.props.active) === 4 || parseInt(this.props.questiondata.my_answer) ===4) ? 'right': ''} data-id="4">
                     <span>D</span> 
                     <p>{answers[3]}</p></li>
+
+                    <li onClick={this.checkAnswer} 
+                        className={(parseInt(this.props.active) === 5  || parseInt(this.props.questiondata.my_answer) ===5) ? 'right': ''}  data-id="5">
+                    <span>E</span> 
+                    <p>{answers[4]}</p></li>
                 </ul>
             </div>
         );
